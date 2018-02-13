@@ -24,31 +24,31 @@ public class Lib {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         STOPWATCH.start();
-        LOGGER.info("Pre-Init - Started");
+        LOGGER.info("[Pre-Init] Started");
 
         if (!SystemUtils.isJavaVersionAtLeast(JavaVersion.JAVA_1_8)) {
             throw new OutdatedJavaException(String.format("%s requires Java 8 or newer, Please update your java", Reference.MOD_NAME));
         }
 
-        LOGGER.info("Pre-Init - Finished - " + STOPWATCH.elapsed(TimeUnit.MILLISECONDS) + "ms");
+        LOGGER.info("[Pre-Init] Finished <" + STOPWATCH.elapsed(TimeUnit.MILLISECONDS) + "ms>");
         STOPWATCH.reset();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         STOPWATCH.start();
-        LOGGER.info("Initialization - Started");
+        LOGGER.info("[Init] Started");
 
-        LOGGER.info("Initialization - Finished - " + STOPWATCH.elapsed(TimeUnit.MILLISECONDS) + "ms");
+        LOGGER.info("[Init] Finished <" + STOPWATCH.elapsed(TimeUnit.MILLISECONDS) + "ms>");
         STOPWATCH.reset();
     }
 
     @Mod.EventHandler
     public void preInit(FMLPostInitializationEvent event) {
         STOPWATCH.start();
-        LOGGER.info("Post-Initialization - Started");
+        LOGGER.info("[Post-Init] Started");
 
-        LOGGER.info("Post-Initialization - Finished - " + STOPWATCH.elapsed(TimeUnit.MILLISECONDS) + "ms");
+        LOGGER.info("[Post-Init] Finished <" + STOPWATCH.elapsed(TimeUnit.MILLISECONDS) + "ms>");
         STOPWATCH.reset();
     }
 

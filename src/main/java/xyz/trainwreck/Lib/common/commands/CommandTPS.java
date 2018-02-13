@@ -11,7 +11,7 @@ import xyz.trainwreck.Lib.common.util.WorldInfoHelper;
 import java.text.DecimalFormat;
 
 public class CommandTPS extends CommandBase {
-    private static DecimalFormat floatfmt = new DecimalFormat("##0.00");
+    private static DecimalFormat floatFormat = new DecimalFormat("##0.00");
 
     @Override
     public String getName() {
@@ -28,13 +28,13 @@ public class CommandTPS extends CommandBase {
         double tps = WorldInfoHelper.getTps();
 
 
-        sender.sendMessage(new TextComponentString("Overall: " + floatfmt.format(tps) + " TPS (" + (int) (tps / 20.0D * 100.0D) + "%)"));
+        sender.sendMessage(new TextComponentString("Overall: " + floatFormat.format(tps) + " TPS (" + (int) (tps / 20.0D * 100.0D) + "%)"));
 
         for (WorldServer worldServer : server.worlds) {
             tps = WorldInfoHelper.getTps(worldServer);
 
             sender.sendMessage(new TextComponentString(worldServer.provider.getDimensionType() + " [" + worldServer.provider.getDimension() + "]: "
-                    + floatfmt.format(tps) + " TPS (" + (int) (tps / 20.0D * 100.0D) + "%)"));
+                    + floatFormat.format(tps) + " TPS (" + (int) (tps / 20.0D * 100.0D) + "%)"));
         }
     }
 }

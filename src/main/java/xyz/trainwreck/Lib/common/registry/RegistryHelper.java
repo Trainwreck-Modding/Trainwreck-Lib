@@ -10,11 +10,12 @@ import xyz.trainwreck.Lib.common.util.Platform;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class RegistryHelper {
 
-    public static List<Block> blocks = new ArrayList<>();
-    public static List<ItemBlock> items = new ArrayList<>();
+    private static List<Block> blocks = new ArrayList<>();
+    private static List<ItemBlock> items = new ArrayList<>();
 
     public static void addBlockToRegistry(String modid, Class<? extends Block> blockClass, Class<? extends ItemBlock> itemBlockClass) {
         Block block;
@@ -36,13 +37,13 @@ public class RegistryHelper {
 
             block.setRegistryName(modid, internalName);
             block.setUnlocalizedName(internalName);
-            itemBlock.setRegistryName(block.getRegistryName());
+            itemBlock.setRegistryName(Objects.requireNonNull(block.getRegistryName()));
 
             blocks.add(block);
             items.add(itemBlock);
 
 
-            if (block instanceof IBlockRender && Platform.isClient()) {
+            if (/*block instanceof IBlockRender && */Platform.isClient()) {
                 ((IBlockRender) block).registerBlockRenderer();
                 ((IBlockRender) block).registerBlockItemRenderer();
             }

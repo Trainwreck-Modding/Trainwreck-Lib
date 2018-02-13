@@ -23,9 +23,9 @@ import javax.annotation.Nullable;
 public class BlockBase extends Block implements IBlockRender {
 
     protected final String modid;
-    protected String resourcePath;
-    protected String internalName = "";
-    protected boolean isInventory = false;
+    private String resourcePath;
+    private String internalName = "";
+    private boolean isInventory = false;
 
 
     public BlockBase(Material blockMaterialIn, String resourcePath, String modid) {

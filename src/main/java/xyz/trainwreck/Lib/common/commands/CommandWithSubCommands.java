@@ -24,7 +24,7 @@ public class CommandWithSubCommands extends CommandBase {
     }
 
     public CommandWithSubCommands(String baseCommand) {
-        this.baseCommand = baseCommand;
+        CommandWithSubCommands.baseCommand = baseCommand;
     }
 
     @Override

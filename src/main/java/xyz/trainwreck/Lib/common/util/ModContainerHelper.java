@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.ModContainer;
 public class ModContainerHelper {
     public static String getModIdFromActiveContainer() {
         ModContainer container = Loader.instance().activeModContainer();
-        String modId = null;
+        String modId;
 
         if (container != null) {
             modId = container.getModId();
@@ -18,7 +18,7 @@ public class ModContainerHelper {
 
     public static String getModNameFromActiveContainer() {
         ModContainer container = Loader.instance().activeModContainer();
-        String modName = null;
+        String modName;
 
         if (container != null) {
             modName = container.getName();
