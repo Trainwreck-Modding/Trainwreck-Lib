@@ -17,8 +17,8 @@ public class RegistryHelper {
     private static List<Block> blocks = new ArrayList<>();
     private static List<ItemBlock> items = new ArrayList<>();
 
-    public static void addBlockToRegistry(String modid, Class<? extends Block> blockClass, Class<? extends ItemBlock> itemBlockClass) {
-        Block block;
+    public static Block addBlockToRegistry(String modid, Class<? extends Block> blockClass, Class<? extends ItemBlock> itemBlockClass) {
+        Block block = null;
         ItemBlock itemBlock;
         String internalName;
 
@@ -43,7 +43,7 @@ public class RegistryHelper {
             items.add(itemBlock);
 
 
-            if (/*block instanceof IBlockRender && */Platform.isClient()) {
+            if (block instanceof IBlockRender && Platform.isClient()) {
                 ((IBlockRender) block).registerBlockRenderer();
                 ((IBlockRender) block).registerBlockItemRenderer();
             }
@@ -53,6 +53,7 @@ public class RegistryHelper {
             Lib.LOGGER.info(String.format("Block %s has had a error : %s", blockClass.getCanonicalName(), e));
 
         }
+        return block;
     }
 
     public static List<Block> getBlocks() {
