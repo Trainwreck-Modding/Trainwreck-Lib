@@ -1,7 +1,12 @@
 package xyz.trainwreck.Lib.common.registry;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.model.ModelLoader;
 import xyz.trainwreck.Lib.Lib;
 import xyz.trainwreck.Lib.api.util.IBlockRender;
 import xyz.trainwreck.Lib.common.blocks.BlockBase;
@@ -17,14 +22,14 @@ public class RegistryHelper {
     private static List<Block> blocks = new ArrayList<>();
     private static List<ItemBlock> items = new ArrayList<>();
 
-    public static Block addBlockToRegistry(String modid, Class<? extends Block> blockClass, Class<? extends ItemBlock> itemBlockClass) {
+    public static Block addBlockToRegistry(String modid, Class<? extends Block> blockClass) {
         Block block = null;
         ItemBlock itemBlock;
         String internalName;
 
         try {
             block = blockClass.getConstructor().newInstance();
-            itemBlock = itemBlockClass.getConstructor(Block.class).newInstance(block);
+            itemBlock = new ItemBlock(block);
 
             internalName = ((BlockBase) block).getInternalName();
 
@@ -54,6 +59,20 @@ public class RegistryHelper {
 
         }
         return block;
+    }
+
+    public static void initItemBlocks(String modid, Block block) {
+
+        try {
+            Item itemBlock = Item.getItemFromBlock(block);
+            ModelResourceLocation model = new ModelResourceLocation(String.format("%s", block.getRegistryName()));
+            ModelBakery.registerItemVariants(itemBlock, model);
+            ItemMeshDefinition meshDefinition = stack -> model;
+            ModelLoader.setCustomMeshDefinition(itemBlock, meshDefinition);
+
+        } catch (Exception e) {
+            Lib.LOGGER.error(String.format("Failed to initialize ItemBlock for: %s || %s", block.getUnlocalizedName(), e));
+        }
     }
 
     public static List<Block> getBlocks() {
