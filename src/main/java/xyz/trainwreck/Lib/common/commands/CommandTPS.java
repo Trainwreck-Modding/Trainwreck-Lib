@@ -27,7 +27,6 @@ public class CommandTPS extends CommandBase {
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
         double tps = WorldInfoHelper.getTps();
 
-
         sender.sendMessage(new TextComponentString("Overall: " + floatFormat.format(tps) + " TPS (" + (int) (tps / 20.0D * 100.0D) + "%)"));
 
         for (WorldServer worldServer : server.worlds) {

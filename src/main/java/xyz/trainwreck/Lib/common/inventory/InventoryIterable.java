@@ -9,7 +9,7 @@ public class InventoryIterable implements Iterator<ItemStack> {
     final IInventory iInventory;
     final int size;
 
-    int i = 0;
+    private int i = 0;
 
     public InventoryIterable(IInventory iInventory, int size) {
         this.iInventory = iInventory;

@@ -34,10 +34,10 @@ public class RegistryHelper {
             internalName = ((BlockBase) block).getInternalName();
 
             if (!internalName.equals(internalName.toLowerCase(Locale.US)))
-                throw new IllegalArgumentException(String.format("InternalName names need to be all lowercase! Item: %s", internalName));
+                throw new IllegalArgumentException(String.format("InternalName values need to be all lowercase! Item: %s", internalName));
 
             if (internalName.isEmpty())
-                throw new IllegalArgumentException(String.format("InternalName name cannot be blank! Item: %s", blockClass.getCanonicalName()));
+                throw new IllegalArgumentException(String.format("InternalName cannot be blank! Item: %s", blockClass.getCanonicalName()));
 
 
             block.setRegistryName(modid, internalName);
@@ -47,17 +47,17 @@ public class RegistryHelper {
             blocks.add(block);
             items.add(itemBlock);
 
-
-            if (block instanceof IBlockRender && Platform.isClient()) {
+            //if (block instanceof IBlockRender && Platform.isClient()) {
+            if (Platform.isClient()) {
                 ((IBlockRender) block).registerBlockRenderer();
                 ((IBlockRender) block).registerBlockItemRenderer();
             }
 
-
         } catch (Exception e) {
-            TrainwreckLib.LOGGER.info(String.format("Block %s has had a error : %s", blockClass.getCanonicalName(), e));
 
+            TrainwreckLib.LOGGER.error(String.format("Block %s has had a error : %s", blockClass.getCanonicalName(), e));
         }
+
         return block;
     }
 
@@ -71,6 +71,7 @@ public class RegistryHelper {
             ModelLoader.setCustomMeshDefinition(itemBlock, meshDefinition);
 
         } catch (Exception e) {
+
             TrainwreckLib.LOGGER.error(String.format("Failed to initialize ItemBlock for: %s || %s", block.getUnlocalizedName(), e));
         }
     }
@@ -82,5 +83,4 @@ public class RegistryHelper {
     public static List<ItemBlock> getItems() {
         return items;
     }
-
 }

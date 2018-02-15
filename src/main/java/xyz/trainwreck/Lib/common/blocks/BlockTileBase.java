@@ -23,8 +23,6 @@ public class BlockTileBase extends BlockBase {
     @Nonnull
     private Class<? extends TileEntity> tileEntityClass;
 
-
-
     public BlockTileBase(Material blockMaterialIn, String resourcePath, String modid) {
         super(blockMaterialIn, resourcePath, modid);
 
@@ -35,7 +33,7 @@ public class BlockTileBase extends BlockBase {
         this.setTileProvider(true);
         this.isInventory = IInventory.class.isAssignableFrom(clazz);
 
-        String tileName = "tileentity." + modid + "." + clazz.getSimpleName();
+        String tileName = "tile." + modid + "." + clazz.getSimpleName();
         GameRegistry.registerTileEntity(this.tileEntityClass, tileName);
     }
 
@@ -49,7 +47,6 @@ public class BlockTileBase extends BlockBase {
         return super.getValidRotations(world, pos);
     }
 
-
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         final TileEntityBase tileEntity = TileHelper.getTileEntity(worldIn,pos,TileEntityBase.class);
@@ -62,12 +59,10 @@ public class BlockTileBase extends BlockBase {
         ReflectionHelper.setPrivateValue(Block.class, this, b, "isTileProvider");
     }
 
-
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         super.getDrops(drops, world, pos, state, fortune);
     }
-
 
     @Nullable
     @Override

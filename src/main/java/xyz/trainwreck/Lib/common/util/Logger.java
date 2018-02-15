@@ -3,6 +3,8 @@ package xyz.trainwreck.Lib.common.util;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
+import java.util.Map;
+
 public class Logger {
     private org.apache.logging.log4j.Logger logger;
 

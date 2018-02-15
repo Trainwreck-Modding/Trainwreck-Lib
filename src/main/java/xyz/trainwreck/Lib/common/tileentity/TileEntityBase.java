@@ -22,7 +22,6 @@ public class TileEntityBase extends TileEntity implements IOrientable {
         return forward;
     }
 
-
     @Override
     public void setOrientation(EnumFacing forward) {
         this.forward = forward;

@@ -23,8 +23,8 @@ import javax.annotation.Nullable;
 public class BlockBase extends Block implements IBlockRender {
 
     protected final String modid;
-    protected String resourcePath;
-    protected String internalName = "";
+    private String resourcePath;
+    private String internalName = "";
     protected boolean isInventory = false;
 
 
@@ -63,7 +63,6 @@ public class BlockBase extends Block implements IBlockRender {
         super.harvestBlock(worldIn, player, pos, state, te, stack);
         worldIn.setBlockToAir(pos);
     }
-
 
     @Override
     @SideOnly(Side.CLIENT)
