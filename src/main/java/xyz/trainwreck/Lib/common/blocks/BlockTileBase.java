@@ -6,12 +6,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import xyz.trainwreck.Lib.common.tileentity.TileEntityBase;
+import xyz.trainwreck.Lib.common.util.TileHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -34,6 +37,25 @@ public class BlockTileBase extends BlockBase {
 
         String tileName = "tileentity." + modid + "." + clazz.getSimpleName();
         GameRegistry.registerTileEntity(this.tileEntityClass, tileName);
+    }
+
+    @Nullable
+    @Override
+    public EnumFacing[] getValidRotations(World world, BlockPos pos) {
+        final TileEntityBase tileEntity = TileHelper.getTileEntity(world, pos, TileEntityBase.class);
+        if (tileEntity != null && tileEntity.canBeRotated())
+            return EnumFacing.HORIZONTALS;
+
+        return super.getValidRotations(world, pos);
+    }
+
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        final TileEntityBase tileEntity = TileHelper.getTileEntity(worldIn,pos,TileEntityBase.class);
+        if (tileEntity != null){
+            tileEntity.dropItems();
+        }
     }
 
     private void setTileProvider(final boolean b) {
