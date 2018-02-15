@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
-import xyz.trainwreck.Lib.Lib;
+import xyz.trainwreck.Lib.TrainwreckLib;
 import xyz.trainwreck.Lib.api.util.IBlockRender;
 import xyz.trainwreck.Lib.common.blocks.BlockBase;
 import xyz.trainwreck.Lib.common.util.Platform;
@@ -55,7 +55,7 @@ public class RegistryHelper {
 
 
         } catch (Exception e) {
-            Lib.LOGGER.info(String.format("Block %s has had a error : %s", blockClass.getCanonicalName(), e));
+            TrainwreckLib.LOGGER.info(String.format("Block %s has had a error : %s", blockClass.getCanonicalName(), e));
 
         }
         return block;
@@ -71,7 +71,7 @@ public class RegistryHelper {
             ModelLoader.setCustomMeshDefinition(itemBlock, meshDefinition);
 
         } catch (Exception e) {
-            Lib.LOGGER.error(String.format("Failed to initialize ItemBlock for: %s || %s", block.getUnlocalizedName(), e));
+            TrainwreckLib.LOGGER.error(String.format("Failed to initialize ItemBlock for: %s || %s", block.getUnlocalizedName(), e));
         }
     }
 

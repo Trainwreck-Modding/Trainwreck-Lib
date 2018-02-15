@@ -7,10 +7,7 @@ import xyz.trainwreck.Lib.common.util.TileHelper;
 
 public class TileEntityBase extends TileEntity implements IOrientable {
     private EnumFacing forward = EnumFacing.NORTH;
-
-
-
-
+    
     public void dropItems() {
         TileHelper.DropItems(this);
     }

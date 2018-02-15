@@ -16,10 +16,13 @@ import xyz.trainwreck.Lib.common.util.Logger;
 import java.util.concurrent.TimeUnit;
 
 @Mod(modid = LibReference.MODID, version = LibReference.VERSION, name = LibReference.MOD_NAME)
-public class Lib {
+public class TrainwreckLib {
 
     public static Logger LOGGER = new Logger(LibReference.MOD_NAME);
     public static Stopwatch STOPWATCH = Stopwatch.createUnstarted();
+
+    @Mod.Instance("Trainwreck TrainwreckLib")
+    public static TrainwreckLib instance;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
