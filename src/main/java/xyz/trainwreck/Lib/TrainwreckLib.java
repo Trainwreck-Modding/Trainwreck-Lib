@@ -21,7 +21,7 @@ public class TrainwreckLib {
     public static Logger LOGGER = new Logger(LibReference.MOD_NAME);
     public static Stopwatch STOPWATCH = Stopwatch.createUnstarted();
 
-    @Mod.Instance("Trainwreck TrainwreckLib")
+    @Mod.Instance("TrainwreckLib")
     public static TrainwreckLib instance;
 
     @Mod.EventHandler
