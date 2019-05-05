@@ -18,9 +18,9 @@ version="${file.jarVersion}" #mandatory
  # A display name for the mod
 displayName="TrainWreck Lib" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
-updateJSONURL="" #optional
+#updateJSONURL="minecraftforge.net/versions.json" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="" #optional
+#displayURL="www.google.com" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
@@ -28,9 +28,9 @@ credits="" #optional
 # A text field displayed in the mod UI
 authors="" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''  '''
+description='''sample'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.examplemod]] #optional
+[[dependencies.twl]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -42,7 +42,7 @@ description='''  '''
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.examplemod]]
+[[dependencies.twl]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.13.2]"
